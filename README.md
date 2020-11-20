@@ -14,3 +14,8 @@
 1. npm build
 2. npm run build-electron
 3. npm run package
+
+### username and password for login to test application
+
+hquach
+a1s2d3f4

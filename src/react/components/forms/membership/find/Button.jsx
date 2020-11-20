@@ -9,8 +9,6 @@ const FindFormButton = ({
     lastName,
     data,
     clearMembership,
-    submitIcon,
-    submitPosition,
     submitContent,
     submitColor,
     submitType,
@@ -18,36 +16,35 @@ const FindFormButton = ({
 }) => {
     return (
         <Fragment>
-            <Form.Button
-                disabled={
-                    (!phone && !membership && !(firstName && lastName)) ||
-                    (membership
-                        ? membership.length < 5
-                        : false || phone
-                        ? phone.length < 14
-                        : false && !(firstName && lastName))
-                }
-                // icon={submitIcon}
-                // labelPosition={submitPosition}
-                content={submitContent}
-                color={submitColor}
-                type={submitType}
-                style={submitStyle}
-                size='big'
-            />
-            <Button
-                disabled={!data.members}
-                // icon='delete'
-                // labelPosition='right'
-                content='Clear'
-                size='big'
-                color='youtube'
-                style={{ marginTop: '24px' }}
-                onClick={(e) => {
-                    e.preventDefault();
-                    clearMembership();
-                }}
-            />
+            <Button.Group>
+                <Form.Button
+                    disabled={
+                        (!phone && !membership && !(firstName && lastName)) ||
+                        (membership
+                            ? membership.length < 5
+                            : false || phone
+                            ? phone.length < 14
+                            : false && !(firstName && lastName))
+                    }
+                    content={submitContent}
+                    color={submitColor}
+                    type={submitType}
+                    style={submitStyle}
+                    size='big'
+                />
+                <Button.Or style={{ marginTop: '28px' }} />
+                <Button
+                    disabled={!data.members}
+                    content='Clear'
+                    size='big'
+                    color='youtube'
+                    style={{ marginTop: '24px' }}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        clearMembership();
+                    }}
+                />
+            </Button.Group>
         </Fragment>
     );
 };
@@ -57,10 +54,7 @@ FindFormButton.defaultProps = {
     membership: '',
     firstName: '',
     lastName: '',
-    submitIcon: 'search',
-    submitPosition: 'left',
     submitContent: 'Find',
-    // submitColor: 'blue',
     submitColor: 'facebook',
     submitType: 'submit',
     submitStyle: { marginTop: '24px' },

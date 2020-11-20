@@ -35,6 +35,7 @@ const MembershipInput = ({
 
     return (
         <Field
+            width={2}
             className='FindMembership'
             name='membership'
             size={size}
@@ -51,7 +52,8 @@ const MembershipInput = ({
 
 MembershipInput.defaultProps = {
     maxNumber: 5,
-    placeholder: 'xxxxxx',
+    placeholder: 'xxxxx',
+    // placeholder: 'Membership #',
     label: 'Membership #',
     size: 'large',
 };

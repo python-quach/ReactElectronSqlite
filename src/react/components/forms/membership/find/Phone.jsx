@@ -35,6 +35,7 @@ const PhoneNumberInput = ({ clear, clearMembershipError, error, size }) => {
 
     return (
         <Field
+            width={2}
             className='FindPhone'
             name='phone'
             size={size}

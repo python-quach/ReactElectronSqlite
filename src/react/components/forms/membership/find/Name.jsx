@@ -38,6 +38,7 @@ const NameInput = ({
 
     return (
         <Field
+            width={2}
             className='FindName'
             name={name}
             size='large'

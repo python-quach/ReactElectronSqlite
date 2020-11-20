@@ -7,7 +7,7 @@ const App = () => {
     return (
         <Router>
             <Menu />
-            <Debug />
+            {/* <Debug /> */}
             <Switch>
                 <Route exact path='/' component={Form.Login} />
                 <Route exact path='/find' component={Form.Find} />

@@ -3,7 +3,7 @@ import { Form } from 'semantic-ui-react';
 import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
 
-const PhoneNumberInput = ({ clear, clearMembershipError, error }) => {
+const PhoneNumberInput = ({ clear, clearMembershipError, error, size }) => {
     const handlePhoneClear = () => {
         if (error) clearMembershipError();
     };
@@ -35,7 +35,9 @@ const PhoneNumberInput = ({ clear, clearMembershipError, error }) => {
 
     return (
         <Field
+            className='FindPhone'
             name='phone'
+            size={size}
             label='Phone'
             placeholder={'(408)-123-4567'}
             component={Form.Input}
@@ -48,6 +50,7 @@ const PhoneNumberInput = ({ clear, clearMembershipError, error }) => {
 
 PhoneNumberInput.defaultProps = {
     error: null,
+    size: 'large',
 };
 
 PhoneNumberInput.propTypes = {

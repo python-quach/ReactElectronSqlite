@@ -10,6 +10,7 @@ const MembershipInput = ({
     maxNumber,
     placeholder,
     label,
+    size,
 }) => {
     const handleClearFields = () => {
         if (error) clearMembershipError();
@@ -34,7 +35,9 @@ const MembershipInput = ({
 
     return (
         <Field
+            className='FindMembership'
             name='membership'
+            size={size}
             placeholder={placeholder}
             label={label}
             component={Form.Input}
@@ -50,6 +53,7 @@ MembershipInput.defaultProps = {
     maxNumber: 5,
     placeholder: 'xxxxxx',
     label: 'Membership #',
+    size: 'large',
 };
 
 MembershipInput.propTypes = {

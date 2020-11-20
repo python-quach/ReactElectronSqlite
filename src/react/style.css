@@ -207,6 +207,30 @@
     background-color: rgb(87 194 226 / 20%);
 }
 
+.field.FindPhone div.ui.large.input input[type='text'] {
+    font-weight: bold;
+    font-size: large;
+    color: #134469;
+    /* color: rgb(49 71 99 / 96%); */
+    background-color: rgb(87 194 226 / 20%);
+}
+
+.field.FindMembership div.ui.large.input input[type='text'] {
+    font-weight: bold;
+    font-size: large;
+    color: #134469;
+    /* color: rgb(49 71 99 / 96%); */
+    background-color: rgb(87 194 226 / 20%);
+}
+
+.field.FindName div.ui.large.input input[type='text'] {
+    font-weight: bold;
+    font-size: large;
+    color: #134469;
+    /* color: rgb(49 71 99 / 96%); */
+    background-color: rgb(87 194 226 / 20%);
+}
+
 .four.wide.field.searchMe div.ui.focus.icon input[type='text'] {
     background-color: rgb(87 194 226 / 20%);
     font-weight: bold;

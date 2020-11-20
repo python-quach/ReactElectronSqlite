@@ -27,19 +27,21 @@ const FindFormButton = ({
                         ? phone.length < 14
                         : false && !(firstName && lastName))
                 }
-                icon={submitIcon}
-                labelPosition={submitPosition}
+                // icon={submitIcon}
+                // labelPosition={submitPosition}
                 content={submitContent}
                 color={submitColor}
                 type={submitType}
                 style={submitStyle}
+                size='big'
             />
             <Button
                 disabled={!data.members}
-                icon='delete'
-                labelPosition='right'
+                // icon='delete'
+                // labelPosition='right'
                 content='Clear'
-                color='red'
+                size='big'
+                color='youtube'
                 style={{ marginTop: '24px' }}
                 onClick={(e) => {
                     e.preventDefault();
@@ -58,7 +60,8 @@ FindFormButton.defaultProps = {
     submitIcon: 'search',
     submitPosition: 'left',
     submitContent: 'Find',
-    submitColor: 'blue',
+    // submitColor: 'blue',
+    submitColor: 'facebook',
     submitType: 'submit',
     submitStyle: { marginTop: '24px' },
 };

@@ -38,7 +38,9 @@ const NameInput = ({
 
     return (
         <Field
+            className='FindName'
             name={name}
+            size='large'
             placeholder={placeholder}
             label={label}
             component={Form.Input}

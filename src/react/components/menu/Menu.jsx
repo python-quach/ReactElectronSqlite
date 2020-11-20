@@ -17,7 +17,7 @@ function NavMenu({ auth, signout, clearMembership }) {
     if (auth) {
         return (
             <Segment raised>
-                <Menu inverted color='blue'>
+                <Menu inverted color='blue' size='huge'>
                     <Menu.Item
                         as={Link}
                         to='/find'

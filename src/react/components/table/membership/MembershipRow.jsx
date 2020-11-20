@@ -18,7 +18,6 @@ const MembershipRow = (props) => {
         renewForm,
         renewMembership,
         members,
-        clearMembershipError,
     } = props;
 
     const [rows, setRows] = useState(members);

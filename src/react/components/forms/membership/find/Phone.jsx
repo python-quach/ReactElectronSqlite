@@ -1,23 +1,7 @@
 import React from 'react';
-import PhoneInput from 'react-phone-input-2';
 import { Form } from 'semantic-ui-react';
 import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
-
-const CustomPhoneInput = (props) => (
-    <PhoneInput
-        {...props.input}
-        specialLabel={'Phone'}
-        disableCountryCode={true}
-        disableDropdown={true}
-        onlyCountries={['us']}
-        defaultMask={'(...)-...-....'}
-        alwaysDefaultMask={true}
-        placeholder={'(408)-123-4567'}
-        country={'us'}
-        inputProps={{}}
-    />
-);
 
 const PhoneNumberInput = ({ clear, clearMembershipError, error }) => {
     const handlePhoneClear = () => {
@@ -46,14 +30,6 @@ const PhoneNumberInput = ({ clear, clearMembershipError, error }) => {
         }
         if (cvLength === 7) {
             return value;
-        }
-    };
-
-    // Make sure only number are all allow
-    const handleNumberMatch = (value, prev) => {
-        const numberPattern = /\d+/g;
-        if (value.match(numberPattern)) {
-            return value.match(numberPattern).join('');
         }
     };
 

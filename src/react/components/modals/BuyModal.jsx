@@ -67,7 +67,7 @@ function BuyModal({
                 {purchase ? (
                     <BuyReceipt invoice={invoice} record={record} />
                 ) : null}
-                <pre>{JSON.stringify(values, null, 2)}</pre>
+                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
             </Modal.Content>
 
             <Modal.Actions>

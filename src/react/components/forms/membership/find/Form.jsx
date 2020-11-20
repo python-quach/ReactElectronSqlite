@@ -59,7 +59,7 @@ FindMembershipForm.defaultProps = {
     popUpContent: 'Please enter require info',
     iconName: 'search',
     iconColor: 'blue',
-    headerContent: 'Find Membership Version 1.1',
+    headerContent: 'Find Membership',
 };
 
 export default reduxForm({ form: 'findMembership' })(FindMembershipForm);

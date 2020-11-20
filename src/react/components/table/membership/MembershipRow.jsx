@@ -24,12 +24,20 @@ const MembershipRow = (props) => {
 
     useEffect(() => {
         console.log(`MembershipRow: `, { values, renewForm, members, invoice });
+        members.map((record, index) => {
+            console.log(index);
+        });
     }, [values, renewForm, members, invoice]);
 
     return rows.map(({ id, account, since, first, last, phone }, index) => (
         <Table.Row key={index}>
             <Table.Cell>
-                <Label ribbon content={account} color='blue' />
+                <Label
+                    ribbon
+                    content={account}
+                    size='large'
+                    color={index % 2 !== 0 ? 'olive' : 'teal'}
+                />
             </Table.Cell>
             <Table.Cell content={since} />
             <Table.Cell content={first + ' ' + last} />

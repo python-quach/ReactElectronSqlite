@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Table from '../../table';
 import { connect } from 'react-redux';
+import { Segment } from 'semantic-ui-react';
 import * as actions from '../../../../redux/actions';
 import { formValueSelector } from 'redux-form';
 import Form from './find/Form';
@@ -22,9 +23,16 @@ const FindMembershipForm = (props) => {
 
     if (auth)
         return (
-            <Form {...props} find={find}>
-                <Table.Membership data={data} />
-            </Form>
+            <>
+                <Form {...props} find={find}>
+                    {/* <Table.Membership data={data} /> */}
+                </Form>
+                {data.members ? (
+                    <Segment raised>
+                        <Table.Membership data={data} />
+                    </Segment>
+                ) : null}
+            </>
         );
 
     return null;

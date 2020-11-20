@@ -6,16 +6,24 @@ const MembershipTable = ({ data }) => {
     if (data.members ? data.members.length > 0 : null) {
         return (
             <Segment raised>
-                {/* <Table celled color='grey' inverted> */}
-                <Table celled color='blue'>
+                <Table
+                    size='large'
+                    columns={16}
+                    celled
+                    color='blue'
+                    compact
+                    singleLine
+                    striped
+                    padded
+                    color='blue'
+                    inverted
+                    selectable>
                     <Table.Header>
                         <Table.Row>
-                            {/* <Table.HeaderCell>Record </Table.HeaderCell> */}
                             <Table.HeaderCell>Account </Table.HeaderCell>
                             <Table.HeaderCell>Member Since</Table.HeaderCell>
                             <Table.HeaderCell>Name</Table.HeaderCell>
                             <Table.HeaderCell>Phone</Table.HeaderCell>
-                            {/* <Table.HeaderCell>Remain Gallon</Table.HeaderCell> */}
                             <Table.HeaderCell>Actions</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>

@@ -1,0 +1,92 @@
+import React, { useEffect, useState } from 'react';
+import { Table, Button, Label } from 'semantic-ui-react';
+import { formatPhoneNumber } from '../../helpers';
+import { Modal } from '../../modals';
+import { connect } from 'react-redux';
+import * as actions from '../../../../redux/actions';
+
+const MembershipRow = (props) => {
+    const {
+        deleteMembership,
+        showHistory,
+        buyMembership,
+        values,
+        invoice,
+        clearBuy,
+        clearRenew,
+        renewInvoice,
+        renewForm,
+        renewMembership,
+        members,
+        clearMembershipError,
+    } = props;
+
+    const [rows, setRows] = useState(members);
+
+    useEffect(() => {
+        console.log(`MembershipRow: `, { values, renewForm, members, invoice });
+    }, [values, renewForm, members, invoice]);
+
+    return rows.map(({ id, account, since, first, last, phone }, index) => (
+        <Table.Row key={index}>
+            <Table.Cell>
+                <Label ribbon content={account} color='blue' />
+            </Table.Cell>
+            <Table.Cell content={since} />
+            <Table.Cell content={first + ' ' + last} />
+            <Table.Cell content={formatPhoneNumber(phone)} />
+            <Table.Cell>
+                <Modal.Buy
+                    record={{ id, account, since, first, last, phone }}
+                    values={values}
+                    clearBuy={clearBuy}
+                    invoice={invoice}
+                    showHistory={showHistory}
+                    buyMembership={buyMembership}
+                    header={'Membership Water Buy'}
+                    leftButton={{ color: 'red', content: 'Done' }}
+                    rightButton={{ color: 'blue', content: 'Buy' }}
+                />
+                <Modal.Renew
+                    renewMembership={renewMembership}
+                    showHistory={showHistory}
+                    renewForm={renewForm}
+                    record={{ id, account, since, first, last, phone }}
+                    clearRenew={clearRenew}
+                    invoice={renewInvoice}
+                />
+                <Modal.Invoice id={id} />
+                <Modal.Edit
+                    record={{ id, account, since, first, last, phone }}
+                />
+                <Button
+                    content='Cancel Membership'
+                    size='small'
+                    color='red'
+                    onClick={() => {
+                        deleteMembership(id);
+                        setRows((row) =>
+                            row.filter((record) => record.id !== id)
+                        );
+                    }}
+                />
+            </Table.Cell>
+        </Table.Row>
+    ));
+};
+
+const mapStateToProps = (state) => {
+    return {
+        invoice: state.membership.buy,
+        renewInvoice: state.membership.renew,
+        history: state.history,
+        invoices: state.history,
+        renewForm: state.form.renew ? { values: state.form.renew.values } : {},
+        gallonTotal: state.membership.totalGallon,
+        gigi: state.invoices.invoices,
+
+        values: state.form.buy ? state.form.buy.values : {},
+    };
+};
+
+export default connect(mapStateToProps, actions)(MembershipRow);

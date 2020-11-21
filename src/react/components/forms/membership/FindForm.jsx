@@ -25,13 +25,13 @@ const FindMembershipForm = (props) => {
         return (
             <>
                 <Form {...props} find={find}>
-                    {/* <Table.Membership data={data} /> */}
+                    <Table.Membership data={data} />
                 </Form>
-                {data.members ? (
+                {/* {data.members ? (
                     <Segment raised>
                         <Table.Membership data={data} />
                     </Segment>
-                ) : null}
+                ) : null} */}
             </>
         );
 

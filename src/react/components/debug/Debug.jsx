@@ -41,12 +41,12 @@ Debug.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        form: state.form ? state.form : {},
-        user: state.user,
+        // form: state.form ? state.form : {},
+        // user: state.user,
         membership: state.membership,
-        history: state.history,
-        account: state.account,
-        invoices: state.invoices,
+        // history: state.history,
+        // account: state.account,
+        // invoices: state.invoices,
     };
 };
 

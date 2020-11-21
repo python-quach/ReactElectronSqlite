@@ -150,6 +150,14 @@
     color: rgb(49 71 99 / 96%);
 }
 
+.three.wide.field.totalMember div.ui.focus.left.icon input[type='text'] {
+    font-weight: bold;
+    font-size: large;
+    color: rgb(49 71 99 / 96%);
+    background-color: rgb(87 194 226 / 20%);
+    /* background-color: rgb(54 169 164 / 96%); */
+}
+
 .two.wide.field.lastGallon div.ui.focus.left.icon input[type='text'] {
     /* background-color: rgb(87 194 226 / 20%); */
     font-weight: bold;

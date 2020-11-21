@@ -76,8 +76,9 @@ export function renewMembership(values) {
         ipcRenderer.on(channels.RENEW_MEMBERSHIP, (event, data) => {
             console.log('response: ', data);
             ipcRenderer.removeAllListeners(channels.RENEW_MEMBERSHIP);
+            // dispatch(reset('renew'));
             dispatch({ type: RENEW_MEMBERSHIP, payload: data });
-            dispatch({ type: FIND_MEMBERSHIP, payload: [data.row] });
+            // dispatch({ type: FIND_MEMBERSHIP, payload: [data.row] });
 
             dispatch(reset('renew'));
         });
@@ -90,13 +91,25 @@ export function buyMembership(values) {
         ipcRenderer.send(channels.BUY_MEMBERSHIP, values);
 
         ipcRenderer.on(channels.BUY_MEMBERSHIP, (event, data) => {
-            console.log('response: ', data);
+            console.log('response: ', data.row);
             ipcRenderer.removeAllListeners(channels.BUY_MEMBERSHIP);
             dispatch({ type: BUY_MEMBERSHIP, payload: data });
-            dispatch({ type: FIND_MEMBERSHIP, payload: [data.row] });
+            // dispatch({ type: FIND_MEMBERSHIP, payload: [data.row] });
+            // dispatch({ type: FIND_MEMBERSHIP, payload: [data.row] });
         });
     };
 }
+
+// FIND MEMBERSHIP
+export const findMembership = (data) => (dispatch) => {
+    ipcRenderer.send(channels.FIND_MEMBERSHIP, data);
+
+    ipcRenderer.on(channels.FIND_MEMBERSHIP, (_, response) => {
+        console.log({ response });
+        ipcRenderer.removeAllListeners(channels.FIND_MEMBERSHIP);
+        dispatch({ type: FIND_MEMBERSHIP, payload: response });
+    });
+};
 
 export const getTotalGallon = (id) => (dispatch) => {
     ipcRenderer.send(channels.GET_TOTAL_GALLON, id);
@@ -106,16 +119,6 @@ export const getTotalGallon = (id) => (dispatch) => {
 
         ipcRenderer.removeAllListeners(channels.GET_TOTAL_GALLON);
         dispatch({ type: GET_TOTAL_GALLON, payload: response });
-    });
-};
-
-// FIND MEMBERSHIP
-export const findMembership = (data) => (dispatch) => {
-    ipcRenderer.send(channels.FIND_MEMBERSHIP, data);
-
-    ipcRenderer.on(channels.FIND_MEMBERSHIP, (_, response) => {
-        ipcRenderer.removeAllListeners(channels.FIND_MEMBERSHIP);
-        dispatch({ type: FIND_MEMBERSHIP, payload: response });
     });
 };
 

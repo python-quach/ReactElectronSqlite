@@ -25,7 +25,7 @@ function NavMenu({
     };
 
     useEffect(() => {
-        console.log(location.pathname);
+        // console.log(location.pathname);
         setActiveItem(location.pathname);
     }, [setActiveItem, location.pathname]);
 

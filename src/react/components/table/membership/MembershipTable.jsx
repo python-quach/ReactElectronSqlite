@@ -3,6 +3,7 @@ import { Segment, Table, Message } from 'semantic-ui-react';
 import MembershipRow from './MembershipRow';
 
 const MembershipTable = ({ data }) => {
+    console.log({ data });
     if (data.members ? data.members.length > 0 : null) {
         return (
             <Segment raised>

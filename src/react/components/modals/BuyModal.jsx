@@ -16,9 +16,15 @@ function BuyModal({
     buyMembership,
     invoice,
     clearBuy,
+    clearMembership,
+    findMembership,
 }) {
     const [open, setOpenModal] = useState(false);
     const [purchase, setPurchase] = useState(false);
+
+    // useEffect(() => {
+    //     findMembership(record.id);
+    // });
 
     useEffect(() => {
         if (open) {
@@ -32,8 +38,9 @@ function BuyModal({
             Object.keys(values).length !== 0 &&
             values.totalGallon !== 0
         )
-            console.log({ ...values });
-    }, [open, values]);
+            console.log({ ...values, purchase });
+        // setPurchase(true);
+    }, [open, values, purchase, setPurchase]);
 
     return (
         <Modal
@@ -50,6 +57,8 @@ function BuyModal({
                     content='Buy'
                     onClick={() => {
                         showHistory(record.id);
+                        // findMembership(record.id);
+                        // clearMembership();
                     }}
                 />
             }>
@@ -67,7 +76,7 @@ function BuyModal({
                 {purchase ? (
                     <BuyReceipt invoice={invoice} record={record} />
                 ) : null}
-                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+                <pre>{JSON.stringify(values, null, 2)}</pre>
             </Modal.Content>
 
             <Modal.Actions>
@@ -85,6 +94,8 @@ function BuyModal({
                         clearBuy();
                         setOpenModal(false);
                         setPurchase(false);
+                        // console.log('object', record);
+                        findMembership({ membership: record.account });
                     }}
                 />
                 {!invoice || values.totalGallon > 0 ? (
@@ -95,13 +106,19 @@ function BuyModal({
                         }
                         {...rightButton}
                         onClick={() => {
+                            setPurchase(true);
                             buyMembership(values);
                             showHistory(record.id);
+
+                            // clearMembership();
+                            // findMembership({
+                            //     ...values,
+                            // });
+                            // reset();
                             // setRows((members) => {
                             //     return members;
                             // });
                             // findMembership(record.id);
-                            setPurchase(true);
                         }}
                     />
                 ) : null}

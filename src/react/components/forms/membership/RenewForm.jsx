@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Input } from 'semantic-ui-react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import * as helpers from '../../helpers';
@@ -30,7 +30,7 @@ const Phone = (props) => {
 };
 
 function RenewForm(props) {
-    const { renewGallon, totalGallon, renew, kaka } = props;
+    const { renewGallon, totalGallon, renew, kaka, test } = props;
     const [total, setTotal] = useState(totalGallon);
 
     useEffect(() => {
@@ -220,6 +220,7 @@ function RenewForm(props) {
                     }}
                 />
                 <Form.Input
+                    // className='MemberGallonRenewal'
                     value={total}
                     name='totalGallon'
                     label='Member Gallon'
@@ -228,7 +229,8 @@ function RenewForm(props) {
                     iconPosition='left'
                     readOnly
                     width={3}
-                    className='totalMemberGallon'
+                    // className='totalMemberGallon'
+                    className={renew ? 'totalMember' : 'totalMemberGallon'}
                 />
             </Form.Group>
         </Form>
@@ -251,6 +253,7 @@ const mapStateToProps = (state, ownProps) => {
             ...ownProps.record,
             ...lastPurchaseHistory,
         },
+        test: state.membership.renew,
         renewGallon:
             state.form.renew && state.form.renew.values
                 ? state.form.renew.values.renewGallon

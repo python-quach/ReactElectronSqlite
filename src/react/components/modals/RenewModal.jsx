@@ -23,6 +23,8 @@ function RenewModal(props) {
         // openBuy,
         // close,
         purchase,
+        history,
+        location,
     } = props;
     const [open, setOpen] = useState(false);
     const [renew, setRenew] = useState(false);
@@ -35,9 +37,28 @@ function RenewModal(props) {
 
     useEffect(() => {
         if (open) {
-            console.log({ renewForm, invoice, record, renew, kaka, purchase });
+            console.log({
+                renewForm,
+                invoice,
+                record,
+                renew,
+                kaka,
+                purchase,
+                history,
+                location,
+            });
         }
-    }, [open, renewForm, invoice, record, renew, kaka, purchase]);
+    }, [
+        open,
+        renewForm,
+        invoice,
+        record,
+        renew,
+        kaka,
+        purchase,
+        history,
+        location,
+    ]);
 
     return (
         <Modal

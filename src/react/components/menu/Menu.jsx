@@ -1,18 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Segment, Menu } from 'semantic-ui-react';
-import { useHistory, Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../../redux/actions';
 
-function NavMenu({ auth, signout, clearMembership }) {
-    const [activeItem, setActiveItem] = useState('/find');
+function NavMenu({
+    auth,
+    signout,
+    clearMembership,
+    location,
+    history,
+    updateActiveItem,
+}) {
+    // const history = useHistory();
+    // console.log(history.location.pathname);
+    // const [activeItem, setActiveItem] = useState('/find');
+    const [activeItem, setActiveItem] = useState(location.pathname);
 
-    const history = useHistory();
+    // const history = useHistory();
 
     const handleNavMenuClick = (e, { name }) => {
         clearMembership();
         setActiveItem('/' + name);
     };
+
+    useEffect(() => {
+        console.log(location.pathname);
+        setActiveItem(location.pathname);
+    }, [setActiveItem, location.pathname]);
 
     if (auth) {
         return (
@@ -23,6 +38,7 @@ function NavMenu({ auth, signout, clearMembership }) {
                         to='/find'
                         name='find'
                         content='Find Membership'
+                        // active={activeItem === '/find'}
                         active={activeItem === '/find'}
                         onClick={handleNavMenuClick}
                     />
@@ -32,6 +48,7 @@ function NavMenu({ auth, signout, clearMembership }) {
                         name='add'
                         content='Add Membership'
                         active={activeItem === '/add'}
+                        // active={activeItem === '/add'}
                         onClick={handleNavMenuClick}
                     />
 
@@ -54,7 +71,8 @@ function NavMenu({ auth, signout, clearMembership }) {
 const mapStateToProps = (state) => {
     return {
         auth: state.user.auth,
+        activeItem: state.menu.activeItem,
     };
 };
 
-export default connect(mapStateToProps, actions)(NavMenu);
+export default withRouter(connect(mapStateToProps, actions)(NavMenu));

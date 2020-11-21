@@ -88,6 +88,8 @@ const InvoiceModal = (props) => {
                         />
 
                         <Pagination
+                            // color='blue'
+                            // inverted
                             // floated='right'
                             activePage={activePage}
                             onPageChange={onChange}
@@ -141,7 +143,8 @@ const InvoiceTable = (props) => {
     if (invoices) {
         return (
             // <Table celled fixed singleLine>
-            <Table celled compact>
+            // <Table celled compact>
+            <Table celled compact size='large' singleLine color='blue'>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Invoice</Table.HeaderCell>
@@ -166,14 +169,10 @@ const InvoiceTable = (props) => {
                             RenewGallon,
                         } = invoice;
                         return (
-                            <Table.Row
-                                className='renewTableRow'
-                                key={index}
-                                // positive={GallonBuy === 'RENEW' || false}
-                                // negative={GallonBuy !== 'RENEW' || false}
-                            >
+                            <Table.Row className='renewTableRow' key={index}>
                                 <Table.Cell className='InvoiceCell'>
                                     <Label
+                                        size='large'
                                         color={
                                             GallonBuy === 'RENEW'
                                                 ? 'green'
@@ -182,7 +181,6 @@ const InvoiceTable = (props) => {
                                         ribbon>
                                         {InvoiceId}
                                     </Label>
-                                    {/* {InvoiceId} */}
                                 </Table.Cell>
                                 <Table.Cell>
                                     {FirstName + ' ' + LastName}

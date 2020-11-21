@@ -81,6 +81,7 @@ function BuyModal({
                 <Button
                     {...leftButton}
                     onClick={() => {
+                        // findMembership(record.id);
                         clearBuy();
                         setOpenModal(false);
                         setPurchase(false);
@@ -96,6 +97,10 @@ function BuyModal({
                         onClick={() => {
                             buyMembership(values);
                             showHistory(record.id);
+                            // setRows((members) => {
+                            //     return members;
+                            // });
+                            // findMembership(record.id);
                             setPurchase(true);
                         }}
                     />

@@ -17,6 +17,8 @@ import {
     CLEAR_MEMBERSHIP,
     UPDATE_MEMBERSHIP,
     EDIT_MEMBERSHIP,
+    UPDATE_ACTIVE_ITEM,
+    CLEAR_HISTORY,
 } from './types';
 import { channels } from '../shared/constants';
 import { reset } from 'redux-form';
@@ -33,6 +35,17 @@ export function authenticate({ username, password }) {
         });
     };
 }
+
+export function clearHistory() {
+    return function (dispatch) {
+        dispatch({ type: CLEAR_HISTORY });
+    };
+}
+
+export const updateActiveItem = (activeLink) => (dispatch, getState) => {
+    // console.log('update activeLink', getState());
+    dispatch({ type: UPDATE_ACTIVE_ITEM, payload: activeLink });
+};
 
 export function clearBuy() {
     return function (dispatch) {
@@ -64,6 +77,7 @@ export function renewMembership(values) {
             console.log('response: ', data);
             ipcRenderer.removeAllListeners(channels.RENEW_MEMBERSHIP);
             dispatch({ type: RENEW_MEMBERSHIP, payload: data });
+            dispatch({ type: FIND_MEMBERSHIP, payload: [data.row] });
 
             dispatch(reset('renew'));
         });
@@ -79,6 +93,7 @@ export function buyMembership(values) {
             console.log('response: ', data);
             ipcRenderer.removeAllListeners(channels.BUY_MEMBERSHIP);
             dispatch({ type: BUY_MEMBERSHIP, payload: data });
+            dispatch({ type: FIND_MEMBERSHIP, payload: [data.row] });
         });
     };
 }

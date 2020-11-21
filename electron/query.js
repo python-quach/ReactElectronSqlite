@@ -12,8 +12,15 @@ const verifyUserLogin = (db, username, password, callback) => {
 const findMembership = (db, args, callback) => {
     console.log('find member:', { args });
     const { id, membership, phone, firstName, lastName } = args;
-    const sql = `SELECT MembershipID id, MemberAccount account, MemberSince since, FirstName first, LastName last, Phone phone 
-                    FROM memberships 
+    const sql = `SELECT 
+                    MembershipID id, 
+                    MemberAccount account, 
+                    MemberSince since, 
+                    FirstName first, 
+                    LastName last, 
+                    Phone phone,
+                    RemainingGallon gallon
+                FROM memberships 
                     WHERE MembershipID = ? 
                     OR MemberAccount = ? 
                     OR Phone = ? 
@@ -184,6 +191,20 @@ const buyMembershipGallon = (db, arg, callback) => {
                 FROM invoices 
                 WHERE InvoiceId = ? `;
 
+    const sql_find = `SELECT  MembershipID id, 
+                            MemberAccount account, 
+                        MemberSince since, 
+    FirstName first, 
+    LastName last, 
+    Phone phone,
+    RemainingGallon gallon
+    FROM memberships WHERE MembershipID = ?`;
+
+    // Find and Update the membership total gallon left
+    const sql_updateGallon = `UPDATE memberships
+                                SET RemainingGallon = ?
+                                WHERE MembershipID = ?`;
+
     db.run(
         sql,
         [id, parseInt(buyGallon), todayDate, remainingGallon, 0],
@@ -193,9 +214,18 @@ const buyMembershipGallon = (db, arg, callback) => {
                 return console.log(err.messages);
             }
             db.get(test, this.lastID, (err, row) => {
-                if (err) return console.log(err.message);
-                console.log('buy row detail', row);
-                callback(row);
+                const buyData = row;
+                const gallonRemain = row.GallonLeft;
+                console.log({ gallonRemain, id });
+
+                db.run(sql_updateGallon, [gallonRemain, id], () => {
+                    if (err) return console.log(err.message);
+
+                    db.get(sql_find, [id], (err, row) => {
+                        console.log('buy row detail', { ...buyData, row });
+                        callback({ ...buyData, row });
+                    });
+                });
             });
         }
     );
@@ -211,6 +241,20 @@ const renewMembership = (db, arg, callback) => {
                     FROM invoices 
                     WHERE InvoiceId = ? `;
 
+    const sql_find = `SELECT  MembershipID id, 
+                    MemberAccount account, 
+                MemberSince since, 
+            FirstName first, 
+LastName last, 
+Phone phone,
+RemainingGallon gallon
+FROM memberships WHERE MembershipID = ?`;
+
+    // Find and Update the membership total gallon left
+    const sql_updateGallon = `UPDATE memberships
+                        SET RemainingGallon = ?
+                        WHERE MembershipID = ?`;
+
     const newGallonLeft = parseInt(renewGallon) + GallonLeft;
 
     db.run(
@@ -220,14 +264,30 @@ const renewMembership = (db, arg, callback) => {
             if (err) {
                 callback({ error: `Membership # ${id} unable to add invoice` });
             }
-            console.log(
-                `A renew row has been inserted with row id ${this.lastID}`
-            );
+
             db.get(test, this.lastID, (err, row) => {
-                if (err) return console.log(err.message);
-                console.log('renew row detail', row);
-                callback(row);
+                const renewData = row;
+                const gallonRemain = row.GallonLeft;
+                console.log({ gallonRemain, id });
+
+                db.run(sql_updateGallon, [gallonRemain, id], () => {
+                    if (err) return console.log(err.message);
+
+                    db.get(sql_find, [id], (err, row) => {
+                        console.log('renew row detail', { ...renewData, row });
+                        callback({ ...renewData, row });
+                    });
+                });
             });
+
+            // console.log(
+            //     `A renew row has been inserted with row id ${this.lastID}`
+            // );
+            // db.get(test, this.lastID, (err, row) => {
+            //     if (err) return console.log(err.message);
+            //     console.log('renew row detail', row);
+            //     callback(row);
+            // });
         }
     );
 };

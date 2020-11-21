@@ -15,7 +15,6 @@ const MembershipTable = ({ data }) => {
                     singleLine
                     striped
                     padded
-                    color='blue'
                     inverted
                     selectable>
                     <Table.Header>

@@ -16,7 +16,25 @@ import {
     GET_TOTAL_GALLON,
     CLEAR_MEMBERSHIP,
     EDIT_MEMBERSHIP,
+    UPDATE_ACTIVE_ITEM,
+    CLEAR_HISTORY,
 } from './types';
+
+const initialStateMenu = {
+    activeItem: '/find',
+};
+
+export function menuReducer(state = initialStateMenu, { type, payload }) {
+    switch (type) {
+        case UPDATE_ACTIVE_ITEM:
+            return {
+                ...state,
+                activeItem: payload,
+            };
+        default:
+            return state;
+    }
+}
 
 const initialStateInvoice = {
     invoices: null,
@@ -72,6 +90,8 @@ export function historyReducer(state = [], action) {
             return [];
         case GET_HISTORY:
             return action.payload;
+        case CLEAR_HISTORY:
+            return [];
         default:
             return state;
     }

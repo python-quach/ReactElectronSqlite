@@ -9,7 +9,7 @@ function BuyReceipt({ invoice, record }) {
     if (invoice) {
         return (
             <Segment raised>
-                <Table celled color='blue' key='blue' inverted>
+                <Table celled color='blue' key='blue' inverted size='large'>
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Receipt</Table.HeaderCell>
@@ -23,7 +23,7 @@ function BuyReceipt({ invoice, record }) {
                     <Table.Body>
                         <Table.Row>
                             <Table.Cell>
-                                <Label ribbon color='green'>
+                                <Label ribbon color='green' size='large'>
                                     Invoice: {invoice.InvoiceId}
                                 </Label>
                             </Table.Cell>

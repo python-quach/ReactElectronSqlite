@@ -38,12 +38,39 @@ function RenewForm(props) {
     }, [renewGallon, totalGallon, renew, kaka]);
 
     useEffect(() => {
+        console.log({ kaka, totalGallon, renewGallon });
         if (renewGallon !== '') {
-            setTotal(totalGallon + parseInt(renewGallon));
+            // if (kaka && kaka.gallon) {
+            //     setTotal(totalGallon + parseInt(kaka.gallon));
+            // }
+            if (kaka && kaka.gallon) {
+                setTotal(kaka.gallon);
+            } else {
+                setTotal(totalGallon + parseInt(renewGallon));
+            }
+            // setTotal((totalGallon) => {
+            //     return totalGallon + parseInt(renewGallon);
+            // });
         } else {
-            setTotal(totalGallon);
+            if (kaka && kaka.gallon) {
+                setTotal(kaka.gallon);
+            } else {
+                setTotal(totalGallon);
+            }
         }
-    }, [renewGallon, totalGallon]);
+
+        // if (kaka && kaka.renewGallon !== '') {
+        //     setTotal(totalGallon + parseInt(kaka.renewGallon));
+        // } else {
+        //     if (kaka && kaka.gallon) setTotal(kaka.gallon);
+        //     setTotal(totalGallon);
+        // }
+        // if (kaka && kaka.gallon !== 0) {
+        //     setTotal(totalGallon + parseInt(kaka.gallon));
+        // } else {
+        //     setTotal(totalGallon);
+        // }
+    }, [renewGallon, totalGallon, kaka]);
 
     return (
         <Form>
@@ -121,7 +148,8 @@ function RenewForm(props) {
                     width={2}
                 />
                 <Field
-                    disabled={renew}
+                    disabled={renew || (kaka && kaka.gallon > 0)}
+                    // disabled={renew}
                     className='feeStyle'
                     icon='dollar'
                     iconPosition='left'
@@ -133,7 +161,8 @@ function RenewForm(props) {
                     normalize={helpers.normalizeMembershipFee}
                 />
                 <Field
-                    disabled={renew}
+                    // disabled={renew}
+                    disabled={renew || (kaka && kaka.gallon > 0)}
                     className='gallonLeft'
                     component={Form.Input}
                     name='GallonLeft'
@@ -171,13 +200,14 @@ function RenewForm(props) {
                     width={2}
                 />
                 <Field
-                    disabled={renew}
+                    disabled={renew || (kaka && kaka.gallon > 0)}
+                    // disabled={renew}
                     className='renewGallon'
                     component={Form.Input}
                     name='renewGallon'
                     icon='theme'
                     iconPosition='left'
-                    label='RenewGallon'
+                    label='Renew Gallon'
                     focus
                     type='number'
                     width={3}

@@ -7,6 +7,7 @@ function HistoryTable({ invoice }) {
         return (
             <Segment raised>
                 <Table celled compact>
+                    {/* <Table color='blue' inverted celled compact size='large'> */}
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Invoice #</Table.HeaderCell>

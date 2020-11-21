@@ -8,6 +8,7 @@ import {
     Icon,
     Grid,
 } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import { todayDate } from '../../helpers';
 import { connect } from 'react-redux';
 import * as actions from '../../../../redux/actions';
@@ -36,11 +37,17 @@ function AddForm(props) {
         renewMembership,
         showHistory,
         clearMembership,
+        location,
+        clearRenew,
+        clearHistory,
+        clearFields,
     } = props;
 
     useEffect(() => {
-        console.log('AddForm: ', { data });
-    }, [data]);
+        console.log('AddForm: ', { data, history, location });
+        // clearRenew();s
+        clearHistory();
+    }, [data, history, location, clearRenew, clearHistory]);
 
     useEffect(() => {
         if (addForm.todayDate) console.log('Redux: ', { addForm });
@@ -69,6 +76,9 @@ function AddForm(props) {
                         onSubmit={handleSubmit((values) => {
                             console.log('handleSubmit: ', values);
                             addNewMembership(values);
+                            clearMembership(); // Remove this if it doesn work
+                            clearRenew();
+                            clearFields();
                             reset();
                         })}>
                         <Form.Group>
@@ -125,13 +135,13 @@ function AddForm(props) {
                     {data.error ? (
                         <Message content={data.error} negative />
                     ) : null}
-                    <pre>
+                    {/* <pre>
                         {JSON.stringify(
                             { addForm, data, kaka, invoice },
                             null,
                             2
                         ) || 'no membership yet'}
-                    </pre>
+                    </pre> */}
                 </Segment>
                 {data.members ? (
                     <Segment raised>
@@ -153,14 +163,22 @@ function AddForm(props) {
                                     onClick={() => {
                                         renewMembership(kaka);
                                         showHistory(record.id);
+                                        // clearRenew();
                                     }}>
                                     <Icon name='cart arrow down' /> Add Gallon
                                 </Button>
                                 <Button
+                                    as={Link}
                                     floated='right'
                                     color='red'
+                                    to='/find'
                                     onClick={() => {
-                                        clearMembership();
+                                        clearRenew();
+                                        // clearMembership();
+                                        // history.goBack();
+                                        history.push('/find');
+
+                                        clearHistory();
                                     }}>
                                     <Icon name='remove' /> Done
                                 </Button>

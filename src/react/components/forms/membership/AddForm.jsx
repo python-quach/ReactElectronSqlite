@@ -16,6 +16,7 @@ import Field from '../../fields';
 import { reduxForm, formValueSelector } from 'redux-form';
 import RenewForm from './RenewForm';
 import RenewReceipt from '../../receipts/RenewReceipt';
+import { FIND_MEMBERSHIP } from '../../../../redux/types';
 
 function AddForm(props) {
     const {
@@ -41,6 +42,7 @@ function AddForm(props) {
         clearRenew,
         clearHistory,
         clearFields,
+        findMembership,
     } = props;
 
     useEffect(() => {
@@ -135,13 +137,13 @@ function AddForm(props) {
                     {data.error ? (
                         <Message content={data.error} negative />
                     ) : null}
-                    {/* <pre>
+                    <pre>
                         {JSON.stringify(
                             { addForm, data, kaka, invoice },
                             null,
                             2
                         ) || 'no membership yet'}
-                    </pre> */}
+                    </pre>
                 </Segment>
                 {data.members ? (
                     <Segment raised>
@@ -173,12 +175,14 @@ function AddForm(props) {
                                     color='red'
                                     to='/find'
                                     onClick={() => {
-                                        clearRenew();
+                                        findMembership({
+                                            membership: record.account,
+                                        });
+                                        // clearRenew();
                                         // clearMembership();
                                         // history.goBack();
-                                        history.push('/find');
-
-                                        clearHistory();
+                                        // history.push('/find');
+                                        // clearHistory();
                                     }}>
                                     <Icon name='remove' /> Done
                                 </Button>

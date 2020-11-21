@@ -18,7 +18,7 @@ function RenewModal(props) {
         color,
         size,
         kaka,
-        // findMembership,
+        findMembership,
         // clearMembershipError,
         // openBuy,
         // close,
@@ -102,9 +102,11 @@ function RenewModal(props) {
                 <Button
                     color='red'
                     onClick={() => {
+                        console.log(record.account);
                         clearRenew();
                         setOpen(false);
                         setRenew(false);
+                        findMembership({ membership: record.account });
                         // if (close) {
                         //     close(false);
                         // }
@@ -121,11 +123,11 @@ function RenewModal(props) {
                         }
                         color='blue'
                         onClick={() => {
-                            console.log(renewForm.values);
+                            // console.log(renewForm.values);
+                            setRenew(true);
                             renewMembership(renewForm.values);
                             showHistory(record.id);
                             // findMembership({ id: record.id });
-                            setRenew(true);
                             // clearMembershipError();
 
                             // if (close) {

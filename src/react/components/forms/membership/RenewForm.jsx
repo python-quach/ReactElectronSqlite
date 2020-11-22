@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import * as helpers from '../../helpers';
@@ -30,7 +30,7 @@ const Phone = (props) => {
 };
 
 function RenewForm(props) {
-    const { renewGallon, totalGallon, renew, kaka, test } = props;
+    const { renewGallon, totalGallon, renew, kaka } = props;
     const [total, setTotal] = useState(totalGallon);
 
     useEffect(() => {
@@ -40,17 +40,11 @@ function RenewForm(props) {
     useEffect(() => {
         console.log({ kaka, totalGallon, renewGallon });
         if (renewGallon !== '') {
-            // if (kaka && kaka.gallon) {
-            //     setTotal(totalGallon + parseInt(kaka.gallon));
-            // }
             if (kaka && kaka.gallon) {
                 setTotal(kaka.gallon);
             } else {
                 setTotal(totalGallon + parseInt(renewGallon));
             }
-            // setTotal((totalGallon) => {
-            //     return totalGallon + parseInt(renewGallon);
-            // });
         } else {
             if (kaka && kaka.gallon) {
                 setTotal(kaka.gallon);
@@ -58,18 +52,6 @@ function RenewForm(props) {
                 setTotal(totalGallon);
             }
         }
-
-        // if (kaka && kaka.renewGallon !== '') {
-        //     setTotal(totalGallon + parseInt(kaka.renewGallon));
-        // } else {
-        //     if (kaka && kaka.gallon) setTotal(kaka.gallon);
-        //     setTotal(totalGallon);
-        // }
-        // if (kaka && kaka.gallon !== 0) {
-        //     setTotal(totalGallon + parseInt(kaka.gallon));
-        // } else {
-        //     setTotal(totalGallon);
-        // }
     }, [renewGallon, totalGallon, kaka]);
 
     return (

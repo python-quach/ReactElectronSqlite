@@ -12,11 +12,14 @@ import { Link } from 'react-router-dom';
 import { todayDate } from '../../helpers';
 import { connect } from 'react-redux';
 import * as actions from '../../../../redux/actions';
-import Field from '../../fields';
+// import Field from '../../fields';
 import { reduxForm, formValueSelector } from 'redux-form';
 import RenewForm from './RenewForm';
 import RenewReceipt from '../../receipts/RenewReceipt';
-import { FIND_MEMBERSHIP } from '../../../../redux/types';
+import PhoneNumber from './add/Phone';
+import Name from './add/Name';
+import Membership from './add/Membership';
+import TodayDate from './add/TodayDate';
 
 function AddForm(props) {
     const {
@@ -47,7 +50,6 @@ function AddForm(props) {
 
     useEffect(() => {
         console.log('AddForm: ', { data, history, location });
-        // clearRenew();s
         clearHistory();
     }, [data, history, location, clearRenew, clearHistory]);
 
@@ -77,19 +79,48 @@ function AddForm(props) {
                     <Form
                         onSubmit={handleSubmit((values) => {
                             console.log('handleSubmit: ', values);
-                            addNewMembership(values);
+                            // addNewMembership(values);
+                            addNewMembership({
+                                ...values,
+                                phone: values.phone
+                                    ? values.phone.replace(/[^\d]/g, '')
+                                    : '',
+                            });
                             clearMembership(); // Remove this if it doesn work
                             clearRenew();
                             clearFields();
                             reset();
                         })}>
                         <Form.Group>
-                            <Field.Phone
+                            {/* <Field.Phone
                                 clearMembershipError={clearMembershipError}
                                 error={data.error}
                                 type='add'
+                            /> */}
+
+                            <PhoneNumber
+                                clear={clearFields}
+                                error={data.error}
+                                clearMembershipError={clearMembershipError}
                             />
-                            <Field.Name
+                            <Name
+                                clear={clearFields}
+                                error={data.error}
+                                clearMembershipError={clearMembershipError}
+                                name='firstName'
+                                placeholder='First Name'
+                                label='First Name'
+                            />
+                            <Name
+                                clear={clearFields}
+                                error={data.error}
+                                clearMembershipError={clearMembershipError}
+                                name='lastName'
+                                placeholder='Last Name'
+                                label='Last Name'
+                            />
+
+                            {/* <Field.Name
                                 onFocus={() => {
                                     !data.error || clearMembershipError();
                                 }}
@@ -106,8 +137,13 @@ function AddForm(props) {
                                 component={Form.Input}
                                 placeholder='Last Name'
                                 label='Last Name'
+                            /> */}
+                            <Membership
+                                clear={clearFields}
+                                error={data.error}
+                                clearMembershipError={clearMembershipError}
                             />
-                            <Field.MembershipNumber
+                            {/* <Field.MembershipNumber
                                 onFocus={() => {
                                     !data.error || clearMembershipError();
                                 }}
@@ -115,8 +151,9 @@ function AddForm(props) {
                                 component={Form.Input}
                                 placeholder='xxxxx'
                                 label='Membership #'
-                            />
-                            <Field.TodayDate />
+                            /> */}
+                            {/* <Field.TodayDate /> */}
+                            <TodayDate />
                         </Form.Group>
                         <Form.Button
                             disabled={

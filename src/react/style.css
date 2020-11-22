@@ -54,6 +54,13 @@
     font-size: large;
 }
 
+.two.wide.field.AddTodayDate div.ui input[type='text'] {
+    /* background-color: rgb(87 194 226 / 20%); */
+    color: #134469;
+    font-weight: bold;
+    font-size: large;
+}
+
 .two.wide.field.memberAccount div.ui input[type='text'] {
     font-weight: bold;
     font-size: large;

@@ -36,6 +36,7 @@ const Phone = ({ clear, clearMembershipError, error }) => {
 
     return (
         <Field
+            size='large'
             name='phone'
             component={CustomPhoneInput}
             normalize={handleNumberMatch}

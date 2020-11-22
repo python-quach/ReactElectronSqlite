@@ -102,12 +102,23 @@ export function buyMembership(values) {
 
 // FIND MEMBERSHIP
 export const findMembership = (data) => (dispatch) => {
+    console.log({ data });
     ipcRenderer.send(channels.FIND_MEMBERSHIP, data);
 
     ipcRenderer.on(channels.FIND_MEMBERSHIP, (_, response) => {
         console.log({ response });
         ipcRenderer.removeAllListeners(channels.FIND_MEMBERSHIP);
         dispatch({ type: FIND_MEMBERSHIP, payload: response });
+    });
+};
+// ADD MEMBERSHIP
+export const addNewMembership = (data) => (dispatch) => {
+    console.log({ data });
+    ipcRenderer.send(channels.ADD_MEMBERSHIP, data);
+
+    ipcRenderer.on(channels.ADD_MEMBERSHIP, (_, data) => {
+        ipcRenderer.removeAllListeners(channels.ADD_MEMBERSHIP);
+        dispatch({ type: ADD_MEMBERSHIP, payload: data });
     });
 };
 
@@ -151,16 +162,6 @@ export const updateMembership = (data) => (dispatch) => {
     ipcRenderer.on(channels.UPDATE_MEMBERSHIP, (event, data) => {
         ipcRenderer.removeAllListeners(channels.UPDATE_MEMBERSHIP);
         dispatch({ type: UPDATE_MEMBERSHIP, payload: data });
-    });
-};
-
-// ADD MEMBERSHIP
-export const addNewMembership = (data) => (dispatch) => {
-    ipcRenderer.send(channels.ADD_MEMBERSHIP, data);
-
-    ipcRenderer.on(channels.ADD_MEMBERSHIP, (_, data) => {
-        ipcRenderer.removeAllListeners(channels.ADD_MEMBERSHIP);
-        dispatch({ type: ADD_MEMBERSHIP, payload: data });
     });
 };
 

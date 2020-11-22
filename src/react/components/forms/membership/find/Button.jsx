@@ -30,13 +30,13 @@ const FindFormButton = ({
                     color={submitColor}
                     type={submitType}
                     style={submitStyle}
-                    size='big'
+                    size='massive'
                 />
-                <Button.Or style={{ marginTop: '28px' }} />
+                <Button.Or style={{ marginTop: '38px' }} size='massive' />
                 <Button
                     disabled={!data.members}
                     content='Clear'
-                    size='big'
+                    size='massive'
                     color='youtube'
                     style={{ marginTop: '24px' }}
                     onClick={(e) => {

@@ -23,8 +23,8 @@ const FindMembershipForm = ({
     headerContent,
 }) => {
     return (
-        <Segment raised>
-            <Segment raised>
+        <Segment>
+            <Segment>
                 <Header>
                     <Popup
                         content={popUpContent}
@@ -59,7 +59,7 @@ FindMembershipForm.defaultProps = {
     popUpContent: 'Please enter require info',
     iconName: 'search',
     iconColor: 'blue',
-    headerContent: 'Find Membership',
+    headerContent: 'Find Membership Version 2',
 };
 
 export default reduxForm({ form: 'findMembership' })(FindMembershipForm);

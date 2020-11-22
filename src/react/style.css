@@ -230,9 +230,24 @@
     background-color: rgb(87 194 226 / 20%);
 }
 
+.field.FindPhone div.ui.massive.input input[type='text'] {
+    font-weight: bold;
+    /* font-size: large; */
+    color: #134469;
+    /* color: rgb(49 71 99 / 96%); */
+    background-color: rgb(87 194 226 / 20%);
+}
+
 .field.FindMembership div.ui.large.input input[type='text'] {
     font-weight: bold;
     font-size: large;
+    color: #134469;
+    /* color: rgb(49 71 99 / 96%); */
+    background-color: rgb(87 194 226 / 20%);
+}
+
+.field.FindMembership div.ui.massive.input input[type='text'] {
+    font-weight: bold;
     color: #134469;
     /* color: rgb(49 71 99 / 96%); */
     background-color: rgb(87 194 226 / 20%);
@@ -246,11 +261,44 @@
     background-color: rgb(87 194 226 / 20%);
 }
 
+.field.FindName div.ui.massive.input input[type='text'] {
+    font-weight: bold;
+    /* font-size: large; */
+    color: #134469;
+    /* color: rgb(49 71 99 / 96%); */
+    background-color: rgb(87 194 226 / 20%);
+}
+
 .four.wide.field.searchMe div.ui.focus.icon input[type='text'] {
     background-color: rgb(87 194 226 / 20%);
     font-weight: bold;
     font-size: large;
     color: rgb(49 71 99 / 96%);
+}
+
+/* Login Form */
+.twelve.wide.field.LoginUsername div.ui.massive.input input[type='text'] {
+    background-color: rgb(87 194 226 / 20%);
+    color: #134469;
+
+    font-weight: bold;
+    /* font-size: large; */
+    /* color: rgb(49 71 99 / 96%); */
+}
+.twelve.wide.field.LoginPassword div.ui.massive.input input[type='password'] {
+    background-color: rgb(87 194 226 / 20%);
+    color: #134469;
+
+    font-weight: bold;
+    /* font-size: large; */
+    /* color: rgb(49 71 99 / 96%); */
+}
+.ui.middle.aligned.equal.width.grid {
+    background-color: #3f587df2;
+}
+
+.body {
+    background-color: #3f587df2;
 }
 
 .tint.icon {
@@ -259,6 +307,15 @@
 }
 .theme.icon {
     color: rgb(8 56 107);
+}
+
+.ui.large.modal.transition.visible.active div.content {
+    background-color: #3f587df2;
+}
+
+.ui.large.modal.transition.visible.active div.actions {
+    /* background-color: #222425; */
+    background-color: #fff;
 }
 
 .positive.center.aligned.RenewGallon {

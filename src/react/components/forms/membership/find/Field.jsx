@@ -3,8 +3,8 @@ import Input from './Input';
 
 const Field = (props) => (
     <Fragment>
-        <Input.Phone {...props} />
-        <Input.Membership {...props} />
+        <Input.Phone {...props} size='massive' />
+        <Input.Membership {...props} size='massive' />
         <Input.Name
             name='firstName'
             placeholder='First Name'

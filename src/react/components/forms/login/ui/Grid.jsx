@@ -22,7 +22,11 @@ const LoginGrid = ({
                         content={popUpContent}
                         trigger={<Icon name={iconName} color={iconColor} />}
                     />
-                    <Header.Content content={headerContent} />
+                    <Header.Content
+                        as='h1'
+                        style={{ color: '#2a77b1' }}
+                        content={headerContent}
+                    />
                 </Header>
                 {children}
             </Segment>
@@ -35,11 +39,11 @@ LoginGrid.defaultProps = {
     columns: 'equal',
     gridStyle: { height: '100vh' },
     gridVerticalAlign: 'middle',
-    gridColumnWidth: { maxWidth: 450 },
+    gridColumnWidth: { maxWidth: 1450, maxHeight: 1000 },
     popUpContent: 'Please enter require info',
-    iconName: 'signup',
+    iconName: 'sign-in',
     iconColor: 'blue',
-    headerContent: 'User Account Login',
+    headerContent: 'Mckee Water ',
 };
 
 LoginGrid.propTypes = {

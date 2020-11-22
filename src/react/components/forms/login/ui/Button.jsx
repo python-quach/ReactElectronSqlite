@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 const Button = ({ username, password }) => {
     return (
         <Form.Button
+            size='massive'
             disabled={!username || !password}
             color='facebook'
             type='submit'

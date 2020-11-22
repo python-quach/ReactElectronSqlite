@@ -7,8 +7,10 @@ const Inputs = ({ err, clearError }) => {
     return (
         <>
             <Field
+                className='LoginUsername'
+                size='massive'
                 component={Form.Input}
-                label='Username'
+                // label='Username'
                 type='text'
                 name='username'
                 placeholder='Username'
@@ -18,9 +20,11 @@ const Inputs = ({ err, clearError }) => {
                 width={12}
             />
             <Field
+                className='LoginPassword'
+                size='massive'
                 component={Form.Input}
                 name='password'
-                label='Password'
+                // label='Password'
                 type='password'
                 placeholder='Password'
                 autoComplete='off'

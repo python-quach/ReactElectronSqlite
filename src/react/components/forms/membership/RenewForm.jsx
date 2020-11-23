@@ -30,8 +30,9 @@ const Phone = (props) => {
 };
 
 function RenewForm(props) {
-    const { renewGallon, totalGallon, renew, kaka } = props;
+    const { renewGallon, totalGallon, renew, kaka, invoice } = props;
     const [total, setTotal] = useState(totalGallon);
+    const [fee, setFee] = useState(25);
 
     useEffect(() => {
         console.log({ renewGallon, totalGallon, renew, kaka });
@@ -53,6 +54,15 @@ function RenewForm(props) {
             }
         }
     }, [renewGallon, totalGallon, kaka]);
+
+    useEffect(() => {
+        if (invoice) {
+            setFee(invoice.Fee);
+            console.log(invoice);
+        } else {
+            // setFee(25);
+        }
+    }, [fee, setFee, invoice]);
 
     return (
         <Form>
@@ -129,8 +139,10 @@ function RenewForm(props) {
                     name='hidden'
                     width={2}
                 />
-                <Field
+                {/* <Field
                     disabled={renew || (kaka && kaka.gallon > 0)}
+                    value={fee}
+                    // value={invoice ? invoice.Fee : 25}
                     // disabled={renew}
                     className='feeStyle'
                     icon='dollar'
@@ -141,7 +153,29 @@ function RenewForm(props) {
                     label='Membership Fee'
                     format={helpers.formatMembershipFee}
                     normalize={helpers.normalizeMembershipFee}
+                /> */}
+
+                <Form.Input
+                    disabled={renew || (kaka && kaka.gallon > 0)}
+                    // className='MemberGallonRenewal'
+                    // value={fee}
+                    defaultValue={25}
+                    className='feeStyle'
+                    icon='dollar'
+                    iconPosition='left'
+                    width={3}
+                    // component={Form.Input}
+                    type='text'
+                    name='fee'
+                    label='Membership Fee'
+                    onChange={(e, { value }) => {
+                        if (!value) setFee('');
+                        setFee(value);
+                    }}
+                    // format={helpers.formatMembershipFee}
+                    // normalize={helpers.normalizeMembershipFee}
                 />
+
                 <Field
                     // disabled={renew}
                     disabled={renew || (kaka && kaka.gallon > 0)}
@@ -229,7 +263,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
         initialValues: {
             todayDate: helpers.todayDate(),
-            fee: 20,
+            // fee: 25,
+            // fee: 25,
             renewGallon: 0,
             totalGallon: lastPurchaseHistory.GallonLeft,
             ...ownProps.record,

@@ -39,7 +39,7 @@ const PhoneNumberInput = ({ clear, clearMembershipError, error, size }) => {
             className='FindPhone'
             name='phone'
             size={size}
-            label='Phone'
+            // label='Phone'
             placeholder={'(408)-123-4567'}
             component={Form.Input}
             normalize={normalizeInput}

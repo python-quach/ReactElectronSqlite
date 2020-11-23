@@ -32,8 +32,9 @@ function NavMenu({
     if (auth) {
         return (
             <Segment raised>
-                <Menu inverted color='blue' size='huge'>
+                <Menu inverted color='blue' as='h1' size='massive'>
                     <Menu.Item
+                        className='MenuFind'
                         as={Link}
                         to='/find'
                         name='find'
@@ -43,6 +44,7 @@ function NavMenu({
                         onClick={handleNavMenuClick}
                     />
                     <Menu.Item
+                        className='MenuAdd'
                         as={Link}
                         to='/add'
                         name='add'
@@ -54,6 +56,7 @@ function NavMenu({
 
                     <Menu.Menu position='right'>
                         <Menu.Item
+                            className='MenuLogout'
                             as={Link}
                             to='/'
                             name='signout'

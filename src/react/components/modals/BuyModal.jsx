@@ -52,7 +52,7 @@ function BuyModal({
             onOpen={() => setOpenModal(true)}
             trigger={
                 <Button
-                    size='small'
+                    size='massive'
                     color='pink'
                     content='Buy'
                     onClick={() => {

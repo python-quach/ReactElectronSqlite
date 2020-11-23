@@ -20,11 +20,21 @@ const MembershipTable = ({ data }) => {
                     selectable>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell>Account </Table.HeaderCell>
-                            <Table.HeaderCell>Member Since</Table.HeaderCell>
-                            <Table.HeaderCell>Name</Table.HeaderCell>
-                            <Table.HeaderCell>Phone</Table.HeaderCell>
-                            <Table.HeaderCell>Actions</Table.HeaderCell>
+                            <Table.HeaderCell>
+                                <h2>Account</h2>
+                            </Table.HeaderCell>
+                            <Table.HeaderCell>
+                                <h2>Member Since</h2>
+                            </Table.HeaderCell>
+                            <Table.HeaderCell>
+                                <h2>Name</h2>
+                            </Table.HeaderCell>
+                            <Table.HeaderCell>
+                                <h2>Phone</h2>
+                            </Table.HeaderCell>
+                            <Table.HeaderCell>
+                                <h2>Actions</h2>
+                            </Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
@@ -35,7 +45,9 @@ const MembershipTable = ({ data }) => {
         );
     } else {
         if (data.error) {
-            return <Message error content={data.error} />;
+            return (
+                <Message error content={data.error} as='h1' size='massive' />
+            );
         } else {
             return null;
         }

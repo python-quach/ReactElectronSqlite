@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Label } from 'semantic-ui-react';
+import { Table, Button, Label, Icon } from 'semantic-ui-react';
 import { formatPhoneNumber } from '../../helpers';
 import { Modal } from '../../modals';
 import { connect } from 'react-redux';
@@ -35,33 +35,88 @@ const MembershipRow = (props) => {
         // });
     }, [values, renewForm, members, invoice]);
 
+    // const test = (gallon) => {
+    //     console.log(gallon);
+    //     if (parseInt(gallon) < 10) {
+    //         return `&nbps ${gallon}`;
+    //     } else {
+    //         return gallon;
+    //     }
+    // };
+
     return rows.map(
         ({ id, account, since, first, last, phone, gallon }, index) => (
             <Table.Row key={index}>
                 <Table.Cell>
                     <Label
                         ribbon
-                        content={'Membership # ' + account}
-                        size='large'
+                        content={account}
+                        size='massive'
                         color={index % 2 !== 0 ? 'olive' : 'teal'}
                     />
+                    {/* <Label
+                        tag
+                        // ribbon='right'
+                        // ribbon='left'
+                        content={'Gallon Remain ' + gallon || 0}
+                        // content={gallon ? test(gallon) : 0}
+                        size='huge'
+                        color={index % 2 !== 0 ? 'olive' : 'teal'}
+                        icon='fork'
+                    /> */}
                     <Button
                         color='vk'
-                        floated='right'
                         content='Gallon Remaining'
+                        size='massive'
                         // icon='fork'
                         label={{
+                            // as='h1',
                             basic: true,
+                            as: 'a',
+                            size: 'huge',
+                            // size: 'tiny',
                             color: 'blue',
                             pointing: 'left',
                             content: gallon || 0,
+                            // content: gallon ? test(gallon) : 0,
                         }}
                     />
                     {/* {gallon} */}
                 </Table.Cell>
-                <Table.Cell content={since} />
-                <Table.Cell content={first + ' ' + last} />
-                <Table.Cell content={formatPhoneNumber(phone)} />
+                {/* <Table.Cell  content={since} /> */}
+                <Table.Cell>
+                    <Label
+                        size='massive'
+                        // as='a'
+                        content={since}
+                        icon='calendar'
+                    />
+                    {/* 
+                    <Label pointing='left' size='huge'>
+                        {since}
+                        <Icon name='mail' />
+                    </Label> */}
+                    {/* <h1>{since}</h1> */}
+                </Table.Cell>
+                {/* <Table.Cell content={first + ' ' + last} /> */}
+                <Table.Cell>
+                    <Label
+                        size='massive'
+                        // as='a'
+                        content={first + '   ' + last}
+                        icon='user outline'
+                    />
+                </Table.Cell>
+                {/* <Table.Cell content={formatPhoneNumber(phone)} /> */}
+                <Table.Cell textAlign='left'>
+                    <Label
+                        size='massive'
+                        // as='a'
+                        content={formatPhoneNumber(phone)}
+                        icon='phone'
+                    />
+                </Table.Cell>
+
                 <Table.Cell>
                     <Modal.Buy
                         setRows={setRows}
@@ -88,9 +143,9 @@ const MembershipRow = (props) => {
                     <Modal.Edit
                         record={{ id, account, since, first, last, phone }}
                     />
-                    <Button
+                    {/* <Button
                         content='Cancel Membership'
-                        size='small'
+                        size='massive'
                         color='red'
                         onClick={() => {
                             deleteMembership(id);
@@ -98,7 +153,7 @@ const MembershipRow = (props) => {
                                 row.filter((record) => record.id !== id)
                             );
                         }}
-                    />
+                    /> */}
                 </Table.Cell>
             </Table.Row>
         )

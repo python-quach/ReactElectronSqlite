@@ -18,7 +18,7 @@ function EditModal(props) {
             onOpen={() => setOpen(true)}
             trigger={
                 <Button
-                    size='small'
+                    size='massive'
                     color='yellow'
                     content='Edit'
                     onClick={() => {}}

@@ -51,7 +51,7 @@ const findTotalGallon = (db, arg, callback) => {
 
 const findHistory = (db, arg, callback) => {
     console.log('heard history', arg);
-    const sql = `SELECT InvoiceId, InvoiceDate, GallonBuy, GallonLeft, RenewGallon, FirstName, LastName, MembershipId, MemberAccount 
+    const sql = `SELECT Fee, InvoiceId, InvoiceDate, GallonBuy, GallonLeft, RenewGallon, FirstName, LastName, MembershipId, MemberAccount 
                     FROM invoices 
                     INNER JOIN memberships 
                     USING(MembershipId) 
@@ -64,10 +64,17 @@ const findHistory = (db, arg, callback) => {
 
 const deleteMembership = (db, arg, callback) => {
     console.log('heard delete', arg);
+
+    const delete_invoices = `DELETE FROM invoices
+                            WHERE MembershipId = ?`;
+
     const sql = `DELETE FROM memberships WHERE MembershipID = ?`;
     db.run(sql, arg, function (err) {
         if (err) return console.log(err.message);
-        callback(this.lastID);
+        db.run(delete_invoices, arg, function (err) {
+            callback(this.lastID);
+        });
+        // callback(this.lastID);
     });
 };
 
@@ -237,7 +244,7 @@ const renewMembership = (db, arg, callback) => {
 
     const sql = `INSERT into invoices(MembershipId, GallonBuy, InvoiceDate, GallonLeft, RenewGallon, Fee) 
                     VALUES(?, ?, ?, ?, ?, ?)`;
-    const test = `SELECT InvoiceId, MembershipId , InvoiceDate, GallonBuy , GallonLeft , RenewGallon 
+    const test = `SELECT Fee, InvoiceId, MembershipId , InvoiceDate, GallonBuy , GallonLeft , RenewGallon 
                     FROM invoices 
                     WHERE InvoiceId = ? `;
 

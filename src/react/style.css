@@ -261,7 +261,25 @@
     background-color: rgb(87 194 226 / 20%);
 }
 
-.field.FindName div.ui.massive.input input[type='text'] {
+.two.wide.field.FindName div.ui.massive.input input[type='text'] {
+    font-weight: bold;
+    /* font-size: large; */
+    color: #134469;
+    /* color: rgb(49 71 99 / 96%); */
+    background-color: rgb(87 194 226 / 20%);
+}
+
+.ui.blue.left.pointing.massive.basic.label {
+    /* font-size: large; */
+    font-weight: bold;
+    font-size: large;
+}
+
+.ui.blue.left.pointing.huge.basic.label {
+    font-weight: bold;
+    font-size: x-large;
+}
+s .field.FindName div.ui.massive.input input[type='text'] {
     font-weight: bold;
     /* font-size: large; */
     color: #134469;
@@ -293,29 +311,12 @@
     /* font-size: large; */
     /* color: rgb(49 71 99 / 96%); */
 }
-.ui.middle.aligned.equal.width.grid {
-    background-color: #3f587df2;
-}
-
-.body {
-    background-color: #3f587df2;
-}
-
 .tint.icon {
     /* color: rgb(49 71 99 / 96%); */
     color: rgb(87 194 226 / 95%);
 }
 .theme.icon {
     color: rgb(8 56 107);
-}
-
-.ui.large.modal.transition.visible.active div.content {
-    background-color: #3f587df2;
-}
-
-.ui.large.modal.transition.visible.active div.actions {
-    /* background-color: #222425; */
-    background-color: #fff;
 }
 
 .positive.center.aligned.RenewGallon {
@@ -332,6 +333,16 @@
 
 td.center.aligned.RenewGallon {
     color: 'blue';
+}
+
+.item.MenuFind {
+    font-size: x-large;
+}
+.item.MenuAdd {
+    font-size: x-large;
+}
+.item.MenuLogout {
+    font-size: x-large;
 }
 
 /* .InvoiceCell {

@@ -30,8 +30,9 @@ const FindMembershipForm = ({
                         content={popUpContent}
                         trigger={<Icon name={iconName} color={iconColor} />}
                     />
-                    <Header.Content content={headerContent} />
+                    <Header.Content as='h1' content={headerContent} />
                 </Header>
+
                 <Form onSubmit={handleSubmit(find(reset))}>
                     <Form.Group>
                         <Field
@@ -49,8 +50,9 @@ const FindMembershipForm = ({
                         />
                     </Form.Group>
                 </Form>
-                {children}
+                {/* {children} */}
             </Segment>
+            {children}
         </Segment>
     );
 };
@@ -59,7 +61,7 @@ FindMembershipForm.defaultProps = {
     popUpContent: 'Please enter require info',
     iconName: 'search',
     iconColor: 'blue',
-    headerContent: 'Find Membership Version 2',
+    headerContent: 'Find Membership',
 };
 
 export default reduxForm({ form: 'findMembership' })(FindMembershipForm);

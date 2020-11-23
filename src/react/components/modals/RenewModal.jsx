@@ -70,7 +70,7 @@ function RenewModal(props) {
             onOpen={() => setOpen(true)}
             trigger={
                 <Button
-                    size={size || 'small'}
+                    size={size || 'massive'}
                     color={color || 'teal'}
                     floated={left}
                     // content='Renew'
@@ -90,7 +90,12 @@ function RenewModal(props) {
 
             <Modal.Content>
                 <Segment raised>
-                    <Form.Renew record={record} renew={renew} kaka={kaka} />
+                    <Form.Renew
+                        record={record}
+                        renew={renew}
+                        kaka={kaka}
+                        invoice={invoice}
+                    />
                 </Segment>
                 {renew ? (
                     <RenewReceipt invoice={invoice} record={record} />

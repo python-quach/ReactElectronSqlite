@@ -1,5 +1,9 @@
 import React, { Fragment } from 'react';
 import { Form, Button } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+import * as actions from '../../../../../redux/actions';
+
 import PropTypes from 'prop-types';
 
 const FindFormButton = ({
@@ -13,6 +17,8 @@ const FindFormButton = ({
     submitColor,
     submitType,
     submitStyle,
+    history,
+    signout,
 }) => {
     return (
         <Fragment>
@@ -32,18 +38,44 @@ const FindFormButton = ({
                     style={submitStyle}
                     size='massive'
                 />
-                <Button.Or style={{ marginTop: '38px' }} size='massive' />
+                <Button.Or style={{ marginTop: '14px' }} size='massive' />
                 <Button
                     disabled={!data.members}
                     content='Clear'
                     size='massive'
                     color='youtube'
-                    style={{ marginTop: '24px' }}
+                    // style={{ marginTop: '24px' }}
                     onClick={(e) => {
                         e.preventDefault();
                         clearMembership();
                     }}
                 />
+                {/* <Button.Or style={{ marginTop: '14px' }} size='massive' />
+                <Button
+                    content='Add'
+                    size='massive'
+                    color='instagram'
+                    // style={{ marginTop: '24px' }}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        clearMembership();
+                    }}
+                />
+                <Button.Or style={{ marginTop: '14px' }} size='massive' />
+                <Button
+                    as={Link}
+                    to='/'
+                    content='Logout'
+                    size='massive'
+                    color='facebook'
+                    // style={{ marginTop: '24px' }}
+                    onClick={(e) => {
+                        signout();
+                        // e.preventDefault();
+                        // clearMembership();
+                        // history.push('/');
+                    }}
+                /> */}
             </Button.Group>
         </Fragment>
     );
@@ -57,7 +89,7 @@ FindFormButton.defaultProps = {
     submitContent: 'Find',
     submitColor: 'facebook',
     submitType: 'submit',
-    submitStyle: { marginTop: '24px' },
+    // submitStyle: { marginTop: '24px' },
 };
 
 FindFormButton.propTypes = {
@@ -67,4 +99,4 @@ FindFormButton.propTypes = {
     lastName: PropTypes.string.isRequired,
 };
 
-export default FindFormButton;
+export default connect(null, actions)(withRouter(FindFormButton));

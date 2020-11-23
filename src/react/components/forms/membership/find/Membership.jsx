@@ -52,9 +52,9 @@ const MembershipInput = ({
 
 MembershipInput.defaultProps = {
     maxNumber: 5,
-    placeholder: 'xxxxx',
-    // placeholder: 'Membership #',
-    label: 'Membership #',
+    // placeholder: 'xxxxx',
+    placeholder: 'Membership #',
+    // label: 'Membership #',
     size: 'large',
 };
 

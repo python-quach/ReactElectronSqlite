@@ -71,7 +71,7 @@ const InvoiceModal = (props) => {
             onOpen={() => setOpenModal(true)}
             trigger={
                 <Button
-                    size='small'
+                    size='massive'
                     color='olive'
                     content='invoice'
                     onClick={() => console.log('Modal Open')}
